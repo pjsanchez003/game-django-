@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ game.title }} ({{ game.platform }})</h1>
+{% if game.cover %}
+<img src="{{ game.cover.url }}" alt="{{ game.title }}" style="max-width:300px;">
+{% endif %}
+<p><strong>Género:</strong> {{ game.genre }}</p>
+<p><strong>Salida:</strong> {{ game.release_date }}</p>
+<p>{{ game.description }}</p>
+<p><strong>Precio:</strong> ${{ game.price }}</p>
+
+<a href="{% url 'games:game-edit' game.pk %}">Editar</a>
+<a href="{% url 'games:game-delete' game.pk %}">Eliminar</a>
+<a href="{% url 'games:game-list' %}">Volver</a>
+{% endblock %}

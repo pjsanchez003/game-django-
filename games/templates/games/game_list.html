@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Lista de videojuegos</h1>
+
+<form method="get" class="mb-3">
+    <input type="text" name="q" placeholder="Buscar..." value="{{ request.GET.q|default:'' }}">
+    <button>Buscar</button>
+</form>
+
+{% for game in games %}
+<div>
+    <h3><a href="{% url 'games:game-detail' game.pk %}">{{ game.title }}</a> ({{ game.platform }})</h3>
+    <p>{{ game.description|truncatechars:120 }}</p>
+    <a href="{% url 'games:game-edit' game.pk %}">Editar</a>
+    <a href="{% url 'games:game-delete' game.pk %}">Eliminar</a>
+</div>
+{% empty %}
+<p>No hay juegos todavía.</p>
+{% endfor %}
+
+{% if is_paginated %}
+<div>
+    {% if page_obj.has_previous %}
+    <a
+        href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Anterior</a>
+    {% endif %}
+    <span>Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+    {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Siguiente</a>
+    {% endif %}
+</div>
+{% endif %}
+
+<a href="{% url 'games:game-add' %}">Agregar juego</a>
+{% endblock %}

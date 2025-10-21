@@ -1,0 +1,13 @@
+# Entorno virtual
+venv/
+__pycache__/
+*.pyc
+
+# Base de datos
+db.sqlite3
+
+# Archivos de media (subidos)
+media/
+
+# Archivos de VS Code
+.vscode/
