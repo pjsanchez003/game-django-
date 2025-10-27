@@ -1,0 +1,29 @@
+{% extends "juegos/base.html" %}
+
+{% block title %}Lista de juegos{% endblock %}
+
+{% block content %}
+<h1 class="text-center mb-4">🎮 Lista de Videojuegos</h1>
+
+{% if juegos %}
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for juego in juegos %}
+    <div class="col">
+        <div class="card h-100 bg-dark text-light border-info">
+            <div class="card-body">
+                <h5 class="card-title">{{ juego.nombre }}</h5>
+                <p class="card-text">{{ juego.descripcion|truncatewords:20 }}</p>
+                <p><strong>Género:</strong> {{ juego.genero }}</p>
+            </div>
+            <div class="card-footer text-center">
+                <a href="{% url 'editar_juego' juego.id %}" class="btn btn-outline-info btn-sm">Editar</a>
+                <a href="{% url 'eliminar_juego' juego.id %}" class="btn btn-outline-danger btn-sm">Eliminar</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p class="text-center">No hay juegos registrados aún 😢</p>
+{% endif %}
+{% endblock %}

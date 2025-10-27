@@ -1,0 +1,10 @@
+{% extends "juegos/base.html" %}
+{% block content %}
+<h2 class="text-center mb-4">✏️ Editar {{ juego.nombre }}</h2>
+
+<form method="post" class="mx-auto" style="max-width: 600px;">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success w-100 mt-3">Actualizar</button>
+</form>
+{% endblock %}

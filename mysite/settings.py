@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'games',
+    'juegos',
 ]
 
 MIDDLEWARE = [
@@ -54,12 +55,12 @@ ROOT_URLCONF = 'mysite.urls'
 
 TEMPLATES = [
     {
-         'DIRS': [BASE_DIR / "templates"],
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],  # Asegúrate de que este directorio exista
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.debug', #Es buena práctica incluir esto
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',

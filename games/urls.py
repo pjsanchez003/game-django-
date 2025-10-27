@@ -11,3 +11,10 @@ urlpatterns = [
     path("game/<int:pk>/edit/", views.GameUpdateView.as_view(), name="game-edit"),
     path("game/<int:pk>/delete/", views.GameDeleteView.as_view(), name="game-delete"),
 ]
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('juegos.urls')),
+]
